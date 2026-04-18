@@ -1,13 +1,4 @@
-# scripts/generate_sources.py
-
-import os
-import csv
-import json
-
-# =========================
-# DATA EXPERT (sementara)
-# =========================
-experts = [
+[
     {
         "rank": 1,
         "name": "Alex Morgan",
@@ -69,35 +60,3 @@ experts = [
         "linkedin": "https://linkedin.com/in/miajohnson"
     }
 ]
-
-# =========================
-# FOLDER OUTPUT
-# =========================
-os.makedirs("result/exports", exist_ok=True)
-os.makedirs("result/summaries", exist_ok=True)
-
-# =========================
-# EXPORT CSV
-# =========================
-with open("result/exports/experts.csv", "w", newline="", encoding="utf-8") as f:
-    writer = csv.DictWriter(f, fieldnames=["rank", "name", "youtube", "linkedin"])
-    writer.writeheader()
-    writer.writerows(experts)
-
-# =========================
-# EXPORT JSON
-# =========================
-with open("result/exports/experts.json", "w", encoding="utf-8") as f:
-    json.dump(experts, f, indent=4)
-
-# =========================
-# EXPORT MARKDOWN
-# =========================
-with open("result/summaries/experts.md", "w", encoding="utf-8") as f:
-    f.write("# Top 10 Experts\n\n")
-    for person in experts:
-        f.write(f"## {person['rank']}. {person['name']}\n")
-        f.write(f"- YouTube: {person['youtube']}\n")
-        f.write(f"- LinkedIn: {person['linkedin']}\n\n")
-
-print("Done! Files generated in result/")
